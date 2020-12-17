@@ -1,0 +1,113 @@
+const Diagnostics = require('Diagnostics');
+const Patches = require('Patches');
+const Scene = require('Scene');
+
+var textObject = Scene.root.child('Device').child('Camera').child('Focal Distance').child('canvas2').child('rectangle0').find('2dText0');
+var updateMe = Patch.getPulseValue('updateMeNow')
+
+var title1 = [];
+
+				title1[0] = 'Green Grocer';
+                title1[1] = 'Hot Take';
+                title1[2] = 'Adventure';
+                title1[3] = 'Orange';
+                title1[4] = 'Riddle Riddle Riddle';
+                title1[5] = 'Vacant';
+                title1[6] = 'Piña Colada';	
+                title1[7] = 'Minimalist';
+                title1[8] = 'Amphibeous';
+                title1[9] = 'Gumshoe';
+                title1[10] = 'Insufferable';
+                title1[11] = 'Glimmering Griddle';
+                title1[12] = "Baker's";
+                title1[13] = 'Sensible and Informed';	
+                title1[14] = 'Shape Up';
+                title1[15] = 'Cyborg';
+                title1[16] = 'Goof';
+                title1[17] = 'Pizza';
+                title1[18] = 'Library';
+                title1[19] = 'Ever Present';
+                title1[20] = 'Mild Mannered';	
+                title1[21] = 'Mindful';
+                title1[22] = 'Intro to Cinema';
+                title1[23] = 'Molten Lava';
+                title1[24] = 'Friend';
+                title1[25] = 'Empty';
+                
+var title2 = [];
+
+				title2[0] = 'Briefing';
+                title2[1] = 'Saloon';
+                title2[2] = 'Fancast';
+                title2[3] = 'Buddies';
+                title2[4] = 'Cast';
+                title2[5] = 'Friends';
+                title2[6] = 'Hour';	
+                title2[7] = 'Update';
+                title2[8] = 'Factor';
+                title2[9] = 'Podcast';
+                title2[10] = 'Zoo';
+                title2[11] = 'Lab';
+                title2[12] = "Zone";
+                title2[13] = 'Cabaret';	
+                title2[14] = 'Campground';
+                title2[15] = 'Village';
+                title2[16] = 'Infodump';
+                title2[17] = 'Experience';
+                title2[18] = 'Town';
+                title2[19] = 'Files';
+                title2[20] = 'Sessions';	
+                title2[21] = 'Speak';
+                title2[22] = 'Roundup';
+                title2[23] = 'Report';
+                title2[24] = 'Troop';
+                title2[25] = 'Menagerie';
+
+var title3 = [];  
+
+				title3[0] = 'Infrasturcture and Logistics';
+                title3[1] = 'Being a good helper';
+                title3[2] = 'Home audio equipment';
+                title3[3] = 'Where to go for Spring Break';
+                title3[4] = 'That thing you lost';
+                title3[5] = 'The worst characters on the best tv shows';
+                title3[6] = 'Legendary Crustaceans ';	
+                title3[7] = 'Quick Service Restaurants';
+                title3[8] = 'Homemade puppets';
+                title3[9] = 'Interior Decorating in Video Games';
+                title3[10] = 'Innovation in Manufacturing';
+                title3[11] = 'Bands that keep getting new members';
+ 
+     
+                
+ title1 = Patch.getScalarValue(title1);
+ title2 = Patch.getScalarValue(title2);
+ title3 = Patch.getScalarValue(title3);
+ 
+ var finaltitle1, finaltitle2, finaltitle3;
+ 
+ finaltitle1 = 0;
+ finaltitle2 = 0;
+ finaltitle3 = 0;
+ 
+ var finalText = ""; 
+ 
+ title1.monitor().subscribe(
+	val =>{
+		finaltitle1 = val.newValue;
+})
+
+ title2.monitor().subscribe(
+	val =>{
+		finaltitle2 = val.newValue;
+})
+
+ title3.monitor().subscribe(
+	val =>{
+		finaltitle3 = val.newValue;
+}) 
+
+updateMe.subscribe( function (e) {
+		finalText = finaltitle1 + " " + finaltitle2;
+		textObject.text = "the " + finalText;
+	});
